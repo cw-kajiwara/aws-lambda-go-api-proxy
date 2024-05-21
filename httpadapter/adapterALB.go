@@ -35,6 +35,9 @@ func (h *HandlerAdapterALB) ProxyWithContext(ctx context.Context, event events.A
 	req, err := h.EventToRequestWithContext(ctx, event)
 	fmt.Println("req method", req.Method)
 	res, err := h.proxyInternal(req, err)
+	res.Headers = map[string]string{
+		"Content-Type": "application/json",
+	}
 	fmt.Println("res", res)
 	return res, err
 }
