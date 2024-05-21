@@ -33,7 +33,7 @@ func (h *HandlerAdapterV2) Proxy(event events.APIGatewayV2HTTPRequest) (events.A
 // It returns a proxy response object generated from the http.ResponseWriter.
 func (h *HandlerAdapterV2) ProxyWithContext(ctx context.Context, event events.APIGatewayV2HTTPRequest) (events.APIGatewayV2HTTPResponse, error) {
 	req, err := h.EventToRequestWithContext(ctx, event)
-	fmt.Println("req", req)
+	fmt.Println("req method", req.Method)
 	res, err := h.proxyInternal(req, err)
 	fmt.Println("res", res)
 	return res, err
