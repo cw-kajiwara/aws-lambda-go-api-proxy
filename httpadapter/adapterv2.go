@@ -2,6 +2,7 @@ package httpadapter
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 
 	"github.com/aws/aws-lambda-go/events"
@@ -32,7 +33,10 @@ func (h *HandlerAdapterV2) Proxy(event events.APIGatewayV2HTTPRequest) (events.A
 // It returns a proxy response object generated from the http.ResponseWriter.
 func (h *HandlerAdapterV2) ProxyWithContext(ctx context.Context, event events.APIGatewayV2HTTPRequest) (events.APIGatewayV2HTTPResponse, error) {
 	req, err := h.EventToRequestWithContext(ctx, event)
-	return h.proxyInternal(req, err)
+	fmt.Println("req", req)
+	res, err := h.proxyInternal(req, err)
+	fmt.Println("res", res)
+	return res, err
 }
 
 func (h *HandlerAdapterV2) proxyInternal(req *http.Request, err error) (events.APIGatewayV2HTTPResponse, error) {

@@ -114,7 +114,7 @@ func (r *RequestAccessorV2) EventToRequestWithContext(ctx context.Context, req e
 // Returns the populated request maintaining headers
 func (r *RequestAccessorV2) EventToRequest(req events.APIGatewayV2HTTPRequest) (*http.Request, error) {
 	// debug print req
-	fmt.Println("Request: ", req.RequestContext.HTTP.Method, req.RequestContext.HTTP.Path, req.RawPath, req.Headers, req.QueryStringParameters, req.RawQueryString)
+	fmt.Println("Request: ", req.RequestContext.HTTP.Method, req.RequestContext.HTTP.Path, req.RawPath)
 
 	decodedBody := []byte(req.Body)
 	if req.IsBase64Encoded {
